@@ -4,6 +4,47 @@ const checkValue = require('./functions').checkValue
 const createUser = require('./functions').createUser
 const fetchUser = require('./functions').fetchUser
 
+
+
+// ********** EXAMPLES OF TELLING TESTS WHEN TO RUN  ********** //
+
+// runs before each test
+// beforeEach(() => initDatabase())
+// runs after each test
+// afterEach(() => closeDatabase())
+
+// runs once before all tests
+beforeAll(() => initDatabase())
+// runs once after all tests
+afterAll(() => closeDatabase())
+
+const initDatabase = () => console.log('Database Initialized...')
+const closeDatabase = () => console.log('Database Closed...')
+
+const nameCheck = () => console.log('Checking Name.... ')
+
+// describe creates a block that groups together several related tests.
+describe('Checking Names', () => {
+     // nameCheck() will run before each of the following tests
+     beforeEach(() => nameCheck())
+
+     test('User is Jeff', () => {
+          const user = 'Jeff'
+          expect(user).toBe('Jeff')
+     })
+
+     test('User is Karen', () => {
+          const user = 'Karen'
+          expect(user).toBe('Karen')
+     })
+
+})
+
+// *********************************************************** //
+
+
+
+
 test('Adds 2 + 2 to equal 4', () => {
      expect(add(2, 2)).toBe(4);
 })
